@@ -96,22 +96,55 @@ Franco (porque esta declarada con let y la hace una variable en bloque)
 ¿Cuál crees que será el resultado de la ejecución de estas operaciones?:
 
 ```javascript
-6 / "3" = '6/3'
-"2" * "3" = '2*3'
-4 + 5 + "px" = 
-"$" + 4 + 5
-"4" - 2
-"4px" - 2
-7 / 0 = error
-{}[0]
+
+6 / "3" = 2
+/*realiza una operación de división. Dado que uno de los operandos es una cadena, JavaScript intentará convertirlo a un número antes de realizar la división.*/
+
+"2" * "3" = 6
+/* realiza una operación de multiplicación. Dado que ambos operandos son cadenas que representan números, JavaScript intentará convertirlos a números antes de realizar la multiplicación. */
+
+4 + 5 + "px" = '9px'
+/* primero se realiza una suma entre los números 4 y 5, lo cual da como resultado 9. Luego, se concatena la cadena "px" al resultado de la suma. */
+
+"$" + 4 + 5 = '$45'
+/*se realiza una concatenación de cadenas. Dado que el primer operando es una cadena, JavaScript interpretará las operaciones restantes como concatenación de cadenas. */
+
+"4" - 2 = '2'
+/* realiza una operación de resta. Dado que el primer operando es una cadena que representa un número, JavaScript intentará convertirlo a un número antes de realizar la resta.  */
+
+"4px" - 2 = NaN
+/*se intenta realizar una operación de resta entre una cadena y un número. Dado que el segundo operando es un número, JavaScript intentará convertir la cadena "4px" a un número antes de realizar la resta. Sin embargo, la conversión no es posible */
+
+7 / 0 = Infinity
+/* se intenta realizar una división entre 7 y 0. En JavaScript, la división por 0 resulta en Infinity */
+
+{}[0] = undefinded
+/* se intenta acceder al elemento de un objeto mediante la notación de corchetes. Sin embargo, el objeto vacío {} no tiene ninguna propiedad definida*/
+
 parseInt("09") = 09
-5 && 2
-2 && 5
-5 || 0
-0 || 5
-[3]+[3]-[10] 
-3>2>1
-[] == ![]
+/* La función parseInt() convierte una cadena en un número entero. Si la cadena comienza con un número válido, se realizará la conversión. */
+
+5 && 2 = 2
+/* El operador lógico && realiza una evaluación lógica y devuelve el último valor evaluado si ambos operandos son verdaderos. Aquí, tanto 5 como 2 se consideran verdaderos en el contexto de la evaluación lógica.*/
+
+2 && 5 = 5
+/*Similar al caso anterior, el operador lógico && realiza una evaluación lógica y devuelve el último valor evaluado si ambos operandos son verdaderos. Aquí, tanto 2 como 5 se consideran verdaderos en el contexto de la evaluación lógica.*/
+
+5 || 0 = 5
+/*El operador lógico || realiza una evaluación lógica y devuelve el primer valor verdadero que encuentra. Si ninguno de los operandos es verdadero, devuelve el último valor evaluado. Aquí, 5 se considera verdadero en el contexto de la evaluación lógica*/
+
+0 || 5  = 5
+/*el operador lógico || realiza una evaluación lógica y devuelve el primer valor verdadero que encuentra. Si ninguno de los operandos es verdadero, devuelve el último valor evaluado. Aquí, 0 se considera falso en el contexto de la evaluación lógica, por lo que se evalúa el siguiente operando 5*/
+
+[3]+[3]-[10] = NaN
+/*Aquí, se realiza una suma entre dos arrays de un solo elemento cada uno. Cuando se suman dos arrays en JavaScript, se realiza una concatenación de arrays. Entonces, [3]+[3] dará como resultado [3, 3]. Luego, se resta el array [10]. Sin embargo, JavaScript realizará la conversión de los arrays a cadenas antes de la resta. La resta entre cadenas intenta convertir las cadenas en números. Dado que la cadena "[3, 3]" no puede ser convertida en un número, el resultado será NaN*/
+
+3>2>1 = false
+/*En JavaScript, las comparaciones se evalúan de izquierda a derecha. En este caso, se evalúa primero 3>2, lo cual devuelve true. Luego, se evalúa true>1, donde true se convierte en 1 en un contexto numérico. Por lo tanto, la expresión se convierte en 1>1, que es falsa. Por lo tanto, el resultado final será false.*/
+
+[] == ![] = false
+/* Aquí, se realiza una comparación de igualdad entre un array vacío [] y la negación de un array vacío ![]. La negación ! convierte el array vacío en su valor booleano contrario, que es true. Entonces, la expresión se convierte en [] == true. En JavaScript, cuando se compara un array con un valor no booleano, el array se convierte en una cadena concatenando todos sus elementos. En este caso, el array vacío se convierte en una cadena vacía "". Luego, se compara "" == true. La comparación entre una cadena y un valor booleano se realiza convirtiendo la cadena en un número. En este caso, la cadena vacía "" se convierte en 0. Entonces, la expresión se convierte en 0 == 1, que es falsa. Por lo tanto, el resultado final será false */
+
 ```
 
 > Si te quedó alguna duda repasá con [este artículo](http://javascript.info/tutorial/object-conversion).
