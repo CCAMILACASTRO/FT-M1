@@ -12,31 +12,25 @@ var a = 5;
 var b = 10;
 var c = function (a, b, c) {
    var x = 10;
-   console.log(x);
-   console.log(a);
+   console.log(x); // 1ro 10
+   console.log(a); // 2do  8
    var f = function (a, b, c) {
       b = a;
-      console.log(b);
+      console.log(b); //3ro 8 (b toma el valor de a pasado por parametro)
       b = c;
       var x = 5;
    };
    f(a, b, c);
-   console.log(b);
+   console.log(b); //4to 9 (porque b esta dentro de otro bloque definida)
 };
 c(8, 9, 10);      
-console.log(b);
-console.log(x);
+console.log(b); // 5to 10 (valor en la var del contexto global)
+console.log(x); //6to 1 - (valor en la var del contexto global)
 ```
-10 -
-8  -
-8 -
-10 / 9 (porque b esta dentro de otro bloque definida)
-undefinded / 10 (valor en la var del contexto global)
-1 - (valor en la var del contexto global)
 
 ```javascript
-console.log(bar);
-console.log(baz);
+console.log(bar); // 1ro undefined -
+console.log(baz); // 2do baz no esta definida
 foo();
 function foo() {
    console.log('Hola!');
@@ -44,32 +38,26 @@ function foo() {
 var bar = 1;
 baz = 2;
 ```
-undefinded -
-baz no esta definida
 
 ```javascript
 var instructor = 'Tony';
 if (true) {
    var instructor = 'Franco';
 }
-console.log(instructor);
+console.log(instructor); // 1ro Franco
 ```
-Franco -
 
 ```javascript
 var instructor = 'Tony';
-console.log(instructor);
+console.log(instructor); // 1ro Tony
 (function () {
    if (true) {
       var instructor = 'Franco';
-      console.log(instructor);
+      console.log(instructor); // 2do Franco (este corresponde al bloque del if)
    }
 })();
-console.log(instructor);
+console.log(instructor); // 3ro Tony
 ```
-Tony
-/Franco/ (este corresponde al bloque del if)
-Tony
 
 ```javascript
 var instructor = 'Tony';
@@ -77,19 +65,12 @@ let pm = 'Franco';
 if (true) {
    var instructor = 'The Flash';
    let pm = 'Reverse Flash';
-   console.log(instructor);
-   console.log(pm);
+   console.log(instructor); // 1ro The Flash (corresponde al if)
+   console.log(pm); // 2do Reverse Flash (corresponde al if)
 }
-console.log(instructor);
-console.log(pm);
-```
-Tony
-Reverse Flash 
----------------
-The Flash (corresponde al if)
-Reverse Flash ((corresponde al if))
-The Flash (corresponde al if porque se modifico su valor)
-Franco (porque esta declarada con let y la hace una variable en bloque)
+console.log(instructor); // 3ro The Flash (corresponde al if porque se modifico su valor)
+console.log(pm); // 4to Franco (porque esta declarada con let y la hace una variable en bloque)
+``` 
 
 ### Coerción de Datos
 
@@ -136,14 +117,14 @@ parseInt("09") = 09
 0 || 5  = 5
 /*el operador lógico || realiza una evaluación lógica y devuelve el primer valor verdadero que encuentra. Si ninguno de los operandos es verdadero, devuelve el último valor evaluado. Aquí, 0 se considera falso en el contexto de la evaluación lógica, por lo que se evalúa el siguiente operando 5*/
 
-[3]+[3]-[10] = NaN
-/*Aquí, se realiza una suma entre dos arrays de un solo elemento cada uno. Cuando se suman dos arrays en JavaScript, se realiza una concatenación de arrays. Entonces, [3]+[3] dará como resultado [3, 3]. Luego, se resta el array [10]. Sin embargo, JavaScript realizará la conversión de los arrays a cadenas antes de la resta. La resta entre cadenas intenta convertir las cadenas en números. Dado que la cadena "[3, 3]" no puede ser convertida en un número, el resultado será NaN*/
+[3]+[3]-[10] = [23]
+//Se concatenan [3]+[3] =[33] y le resta el [10] y total = [23]
 
 3>2>1 = false
 /*En JavaScript, las comparaciones se evalúan de izquierda a derecha. En este caso, se evalúa primero 3>2, lo cual devuelve true. Luego, se evalúa true>1, donde true se convierte en 1 en un contexto numérico. Por lo tanto, la expresión se convierte en 1>1, que es falsa. Por lo tanto, el resultado final será false.*/
 
-[] == ![] = false
-/* Aquí, se realiza una comparación de igualdad entre un array vacío [] y la negación de un array vacío ![]. La negación ! convierte el array vacío en su valor booleano contrario, que es true. Entonces, la expresión se convierte en [] == true. En JavaScript, cuando se compara un array con un valor no booleano, el array se convierte en una cadena concatenando todos sus elementos. En este caso, el array vacío se convierte en una cadena vacía "". Luego, se compara "" == true. La comparación entre una cadena y un valor booleano se realiza convirtiendo la cadena en un número. En este caso, la cadena vacía "" se convierte en 0. Entonces, la expresión se convierte en 0 == 1, que es falsa. Por lo tanto, el resultado final será false */
+[] == ![] = true
+/* Es true porque ambos valores son parecidos (==). Si fuese igualdad estricta (===) daria false porque uno es un array vacio y el otro es la negacion del array vacio */
 
 ```
 
@@ -155,10 +136,10 @@ parseInt("09") = 09
 
 ```javascript
 function test() {
-   console.log(a);
-   console.log(foo());
+   console.log(a); //undefinded - La variable a no esta definida aun
+   console.log(foo()); //2 - valor de la funcion foo (puede ejecutarse en cualquier lugar porque es una funcion declarada.)
 
-   var a = 1;
+   var a = 1; 
    function foo() {
       return 2;
    }
@@ -166,8 +147,6 @@ function test() {
 
 test();
 ```
-undefinded - La variable a no esta definida aun
-2 - valor de la funcion foo
 
 Y el de este código? :
 
@@ -182,10 +161,8 @@ function getFood(food) {
    return snack;
 }
 
-getFood(false);
+getFood(false); // undefinded
 ```
-nada - Porque dice que food es falsa por ende no se retorna ningun valor de snack
-
 
 ### This
 
@@ -203,15 +180,14 @@ var obj = {
    },
 };
 
-console.log(obj.prop.getFullname());
+console.log(obj.prop.getFullname()); /* 1ro Aurelio De Rosa : Por que el this. hace referencia a la prop fullname dentro del metodo getFullname test is not a function */
 
 var test = obj.prop.getFullname;
 
-console.log(test());
+console.log(test()); // 2do undefined / (la funcion getFullname() esta declarada dentro del objeto 'prop', pero la var 'test' esta declarada por fuera con var, por ende hace referencia al contexto global y su valor no esta definido)
 ```
-Aurelio De Rosa : Por que el this. hace referencia a la prop fullname dentro del metodo getFullname
-test is not a function
-undefinded / (porque no esta invocando el metodo getFullname para que retorne su valor)
+
+
 
 ### Event loop
 
@@ -219,23 +195,18 @@ Considerando el siguiente código, ¿Cuál sería el orden en el que se muestra 
 
 ```javascript
 function printing() {
-   console.log(1);
+   console.log(1); //1 - 1ro
    setTimeout(function () {
-      console.log(2);
-   }, 1000);
+      console.log(2); //2 - 4to
+   }, 1000); 
    setTimeout(function () {
-      console.log(3);
-   }, 0);
-   console.log(4);
+      console.log(3); //3 - 3ro
+   }, 0); 
+   console.log(4);  // 4 - 2do
 }
 
 printing();
 ```
-1 -
-4 -
-3 -
-2 -
-
 
 </br >
 
