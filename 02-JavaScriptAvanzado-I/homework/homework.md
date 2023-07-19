@@ -30,8 +30,8 @@ console.log(x); //6to 1 - (valor en la var del contexto global)
 
 ```javascript
 console.log(bar); // 1ro undefined -
-console.log(baz); // 2do baz no esta definida
-foo();
+console.log(baz); // 2do baz is not defined (porque no esta definida con var ni let ni const)
+foo(); // 3ro Hola
 function foo() {
    console.log('Hola!');
 }
@@ -50,7 +50,7 @@ console.log(instructor); // 1ro Franco
 ```javascript
 var instructor = 'Tony';
 console.log(instructor); // 1ro Tony
-(function () {
+(function () { // f() autoinvocable = IIFE
    if (true) {
       var instructor = 'Franco';
       console.log(instructor); // 2do Franco (este corresponde al bloque del if)
@@ -66,7 +66,7 @@ if (true) {
    var instructor = 'The Flash';
    let pm = 'Reverse Flash';
    console.log(instructor); // 1ro The Flash (corresponde al if)
-   console.log(pm); // 2do Reverse Flash (corresponde al if)
+   console.log(pm); // 2do Reverse Flash (corresponde al if xq esta declarada con let y tiene alcance de bloque)
 }
 console.log(instructor); // 3ro The Flash (corresponde al if porque se modifico su valor)
 console.log(pm); // 4to Franco (porque esta declarada con let y la hace una variable en bloque)
@@ -100,9 +100,9 @@ console.log(pm); // 4to Franco (porque esta declarada con let y la hace una vari
 /* se intenta realizar una división entre 7 y 0. En JavaScript, la división por 0 resulta en Infinity */
 
 {}[0] = undefinded
-/* se intenta acceder al elemento de un objeto mediante la notación de corchetes. Sin embargo, el objeto vacío {} no tiene ninguna propiedad definida*/
+/* se intenta acceder a la posicion 0 de un objeto mediante la notación de corchetes. Sin embargo, el objeto vacío {} no tiene ninguna propiedad definida*/
 
-parseInt("09") = 09
+parseInt("09") = 9
 /* La función parseInt() convierte una cadena en un número entero. Si la cadena comienza con un número válido, se realizará la conversión. */
 
 5 && 2 = 2
@@ -136,8 +136,8 @@ parseInt("09") = 09
 
 ```javascript
 function test() {
-   console.log(a); //undefinded - La variable a no esta definida aun
-   console.log(foo()); //2 - valor de la funcion foo (puede ejecutarse en cualquier lugar porque es una funcion declarada.)
+   console.log(a); //undefinded - La variable a no esta definida aun.
+   console.log(foo()); //2 - Hoisting: porque primero se ejecuta antes de definirla, y luego se esta definiendo.
 
    var a = 1; 
    function foo() {
@@ -161,7 +161,7 @@ function getFood(food) {
    return snack;
 }
 
-getFood(false); // undefinded
+getFood(false); // undefinded (La var snack dentro del entorno lexico de la funcion tiene valor undefined, y al momento de retornarlo RETORNA ese valor undefined porque al pasarle por parametro 'false' no entra al if, pero dentro del entorno lexico si existe snack PERO tiene valor undefined).
 ```
 
 ### This
@@ -184,7 +184,7 @@ console.log(obj.prop.getFullname()); /* 1ro Aurelio De Rosa : Por que el this. h
 
 var test = obj.prop.getFullname;
 
-console.log(test()); // 2do undefined / (la funcion getFullname() esta declarada dentro del objeto 'prop', pero la var 'test' esta declarada por fuera con var, por ende hace referencia al contexto global y su valor no esta definido)
+console.log(test()); // 2do undefined / (la funcion getFullname() esta declarada dentro del objeto 'prop' y su propiedad this.fullname esta haciendo referencia al fullname del objeto prop que es Aurelio, pero no hay una propiedad fullname en el contexto global, sino que hay una sola var fullname afuera. Y esa variable en el entorno lexico tiene valor undefined)
 ```
 
 
@@ -200,7 +200,7 @@ function printing() {
       console.log(2); //2 - 4to
    }, 1000); 
    setTimeout(function () {
-      console.log(3); //3 - 3ro
+      console.log(3); //3 - 3ro se imprime antes porque dura 0seg y el 2 tarda 1seg.
    }, 0); 
    console.log(4);  // 4 - 2do
 }
