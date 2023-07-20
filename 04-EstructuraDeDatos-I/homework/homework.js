@@ -18,6 +18,8 @@ Como ejercicio adicional y completamente opcional, al terminar de resolver este 
 funciones que logren los mismos resultados pero de manera iterativa.
 */
 
+// FACTORIAL CON RECURSIVIDAD:
+
 function nFactorial(n) {
   if(n === 0 || n === 1) return 1
   else if(n < 0) return 0
@@ -44,13 +46,31 @@ function nFactorial2(num){
 }
 console.log(nFactorial2(4))
 
-// FIBONACCI
+// FIBONACCI CON RECURSIVIDAD
 
 function nFibonacci(n) {
   if(n <= 0) return 0;
   else if(n === 1) return 1;
   return nFibonacci(n - 1) + nFibonacci(n - 2); // suma el numero que pasa mas el numero anterior a él. 
 }
+
+function nFibonacci2(num) {
+  if(num <= 0) return 0;
+  else if(n === 1) return 1;
+
+  let valor1 = 0;
+  let valor2 = 0;
+  let resultado = 0;
+
+  for(let i = 2; i <= num; i++){
+    resultado = valor1 + valor2;
+    valor1 = valor2
+    valor2 = resultado;
+  }
+  return resultado;
+}
+
+
 
 /*
 Implementar la clase Queue, sabiendo que es una estructura de tipo FIFO, donde el primer elemento que ingresa es el 
