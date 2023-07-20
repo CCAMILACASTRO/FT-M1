@@ -62,6 +62,8 @@ primero que se quita. Definir los siguientes métodos:
 Pueden utilizar class o función constructora.
 */
 
+// CON FUNCION CONSTRUCTORA:
+
 function Queue() {
 
   this.fila = [];
@@ -78,6 +80,26 @@ Queue.prototype.dequeue = function(){
 Queue.prototype.size = function(){
   return this.fila.length;
 }  
+
+
+// CON CLASES:
+
+class Queue {
+  constructor() {
+
+    this.fila = [];
+  }
+  enqueue(item) {
+    this.fila.push(item);
+  }
+  dequeue() {
+    return this.fila.shift();
+  }
+  size() {
+    return this.fila.length;
+  }
+}
+
 
 
 /*⚠️ No modificar nada debajo de esta línea ⚠️*/
