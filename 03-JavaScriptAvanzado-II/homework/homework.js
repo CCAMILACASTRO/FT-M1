@@ -48,21 +48,22 @@ no sea necesario volver a invocar a cb, porque el resultado estará guardado en 
   const squareCache = cacheFunction(square)
 
   squareCache(5)    // invocará a square(5), almacenará el resultado y lo retornará
-  squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) */
+  squareCache(5)    // no volverá a invocar a square, simplemente buscará en la caché cuál es el resultado de square(5) 
+  y lo retornará (tip: si usaste un objeto, podés usar hasOwnProperty) */
 
 function cacheFunction(cb) {
    
-    var cache = {}; // Objeto para almacenar la memoria caché
+    let cache = {}; // Objeto para almacenar la memoria caché
   
     return function(arg) {
-      if (cache.hasOwnProperty(arg)) {
-        return cache[arg]; // Devuelve el resultado almacenado en la caché si existe
+      if (cache.hasOwnProperty(arg)) { // Si el argumento ya existe en la caché
+        return cache[arg]; // Si el argumento EXISTE devuelve el resultado almacenado en la caché 
       }
+      
+      let resultado = cb(arg); //Si el argumento NO EXISTE se invoca al callback para obtener el resultado.
+      cache[arg] = resultado; // Almacena el resultado en la caché
   
-      var result = cb(arg); // Invoca al callback para obtener el resultado
-      cache[arg] = result; // Almacena el resultado en la caché
-  
-      return result; // Devuelve el resultado obtenido del callback
+      return resultado; // Devuelve el resultado obtenido del callback
     };
   }
 /* En esta implementación, cacheFunction recibe una función cb como parámetro y devuelve una función interna. 
@@ -98,8 +99,8 @@ function getNombre() {
   actúen como getNombre pero retornen el nombre del instructor y del alumno, respectivamente.
 */
 
-let getNombreInstructor = getNombre.bind(instructor, instructor.nombre);
-let getNombreAlumno = getNombre.bind(alumno, alumno.nombre);
+let getNombreInstructor = getNombre.bind(instructor);
+let getNombreAlumno = getNombre.bind(alumno);
 
 /*
   Ejercicio 4
@@ -136,3 +137,5 @@ module.exports = {
    textoGuiones,
    textoUnderscore,
 };
+
+
