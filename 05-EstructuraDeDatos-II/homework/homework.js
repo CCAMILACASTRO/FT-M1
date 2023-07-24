@@ -22,8 +22,8 @@ function LinkedList(){
 function Node(value){
   this.value = value;
   this.next = null;
-  
 
+  
 }
 
 LinkedList.prototype.add = function(value){
@@ -127,7 +127,7 @@ HashTable.prototype.set = function(key, value){ // se encarga de generar y guard
   this.array[index] = {} //Creamos un objeto en esa posicion dentro del array
   }   // Si no hay nada...
   this.array[index][key] = value; // Creamos un nuevo objeto con la key:value.
-}
+}  
 
 HashTable.prototype.get = function(key){
   let index = this.hash(key); //Invocamos al metodo hash y le pasamos la key para saber su posicion.

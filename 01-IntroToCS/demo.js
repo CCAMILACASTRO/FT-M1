@@ -23,3 +23,6 @@ console.log("Conjunción - NOT: ");
 
 console.log("NOT true: ", !true);
 console.log("NOT false: ", !false);
+
+
+

@@ -54,21 +54,36 @@ function nFibonacci(n) {
   return nFibonacci(n - 1) + nFibonacci(n - 2); // suma el numero que pasa mas el numero anterior a él. 
 }
 
-function nFibonacci2(num) {
-  if(num <= 0) return 0;
-  else if(n === 1) return 1;
+// Iteraciones detalladas:
 
-  let valor1 = 0;
-  let valor2 = 0;
-  let resultado = 0;
+// Ahora, comenzamos a retroceder en las llamadas recursivas:
 
-  for(let i = 2; i <= num; i++){
-    resultado = valor1 + valor2;
-    valor1 = valor2
-    valor2 = resultado;
-  }
-  return resultado;
-}
+// 8. `nFibonacci(2)`
+//    - Devuelve `nFibonacci(2 - 1) + nFibonacci(2 - 2);`
+//    - `nFibonacci(1)` es 1, y `nFibonacci(0)` es 0.
+//    - Devuelve `1 + 0`, que es igual a `1`.
+
+// 9. `nFibonacci(3)`
+//    - Devuelve `nFibonacci(3 - 1) + nFibonacci(3 - 2);`
+//    - `nFibonacci(2)` es 1, y `nFibonacci(1)` es 1.
+//    - Devuelve `1 + 1`, que es igual a `2`.
+
+// 10. `nFibonacci(4)`
+//    - Devuelve `nFibonacci(4 - 1) + nFibonacci(4 - 2);`
+//    - `nFibonacci(3)` es 2, y `nFibonacci(2)` es 1.
+//    - Devuelve `2 + 1`, que es igual a `3`.
+
+// 11. `nFibonacci(5)`
+//    - Devuelve `nFibonacci(5 - 1) + nFibonacci(5 - 2);`
+//    - `nFibonacci(4)` es 3, y `nFibonacci(3)` es 2.
+//    - Devuelve `3 + 2`, que es igual a `5`.
+
+// 12. `nFibonacci(6)`
+//    - Devuelve `nFibonacci(6 - 1) + nFibonacci(6 - 2);`
+//    - `nFibonacci(5)` es 5, y `nFibonacci(4)` es 3.
+//    - Devuelve `5 + 3`, que es igual a `8`.
+
+// El resultado final para `n = 6` es `8`.
 
 
 
@@ -128,3 +143,7 @@ module.exports = {
    nFactorial,
    nFibonacci,
 };
+
+
+
+

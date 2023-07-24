@@ -59,11 +59,10 @@ function cacheFunction(cb) {
       if (cache.hasOwnProperty(arg)) { // Si el argumento ya existe en la caché
         return cache[arg]; // Si el argumento EXISTE devuelve el resultado almacenado en la caché 
       }
-      
-      let resultado = cb(arg); //Si el argumento NO EXISTE se invoca al callback para obtener el resultado.
-      cache[arg] = resultado; // Almacena el resultado en la caché
+       //Si el argumento NO EXISTE 
+      cache = cb(arg); //se invoca al callback para obtener el resultado y almacena el resultado en la caché
   
-      return resultado; // Devuelve el resultado obtenido del callback
+      return cache[arg] ; // Devuelve el resultado obtenido del callback
     };
   }
 /* En esta implementación, cacheFunction recibe una función cb como parámetro y devuelve una función interna. 
