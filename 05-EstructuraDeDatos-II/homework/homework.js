@@ -16,6 +16,7 @@ Implementar la clase LinkedList, definiendo los siguientes métodos:
 
 function LinkedList(){
   this.head = null;
+  this._length = 0;
 
 }
 
@@ -23,7 +24,7 @@ function Node(value){
   this.value = value;
   this.next = null;
 
-  
+
 }
 
 LinkedList.prototype.add = function(value){
@@ -40,7 +41,8 @@ LinkedList.prototype.add = function(value){
       }                         
     // Si se rompe el while es xq encontre un next con valor = null, es decir que aun no esta enlazado con otro nodo.
       current.next = node; // Entonces le agregamos/enlazamos un nuevo nodo al next anterior.
-     }
+      this._length++;
+    }
 }
 
 LinkedList.prototype.remove = function(){
@@ -62,6 +64,7 @@ LinkedList.prototype.remove = function(){
   // Si se rompe el while es xq encontre un next con valor = null, es decir que aun no esta enlazado con otro nodo.
   let nodoRemove = current.next.value // Guardamos en una variable el valor del nodo que estamos eliminando. Ingresando a la propiedad value del nodo.
   current.next= null; // En caso de que el nodo este enlazado con otro nodo, le decimos a su puntero que mire a null.
+  this._length--;
   return nodoRemove; 
 }
 
@@ -83,6 +86,16 @@ LinkedList.prototype.search = function(arg){ //Colocamos 'argumento' porque pued
   }
   return null; // Si no encontro el valor, retorna null.
 }
+ //COMPROBACIONES:
+let newList = new LinkedList()
+newList.add(5)
+newList.add(8)
+newList.add(2)
+console.log(newList)
+console.log(newList._length)
+newList.remove()
+console.log(newList)
+console.log(newList._length)
 
 
 /* EJERCICIO 2
