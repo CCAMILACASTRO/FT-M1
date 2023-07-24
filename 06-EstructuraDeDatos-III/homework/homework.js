@@ -39,7 +39,7 @@ BinarySearchTree.prototype.insert = function(value){
 
 BinarySearchTree.prototype.size = function(){
    let total= 0; //Genero un contador para ir sumando los nodos
-   total+= 1;  //Arranca en 1 porque ya considera la raiz
+   total+= 1;  //Le sumo 1 por la raiz (this.value)
    if(this.left) total += this.left.size(); //Si hay izquierda sumale todo lo que haya en la izquierda.
    if(this.right) total += this.right.size(); //Si hay derecha sumale todo lo que haya en la derecha.
    return total;
