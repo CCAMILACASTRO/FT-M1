@@ -18,7 +18,6 @@ function BinarySearchTree(value) {
 }
 
 BinarySearchTree.prototype.insert = function(value){
-   
    //Si es menor...
    if(value < this.value) { //Comparamos con el valor del root para saber a qué lado va. Como es menor...
       if(this.left){ //Si no esta vacio...
@@ -38,8 +37,7 @@ BinarySearchTree.prototype.insert = function(value){
 }
 
 BinarySearchTree.prototype.size = function(){
-   let total= 0; //Genero un contador para ir sumando los nodos
-   total+= 1;  //Le sumo 1 por la raiz (this.value)
+   let total= 1; //Genero un contador con 1 porque ya considera la raiz(this.value)
    if(this.left) total += this.left.size(); //Si hay izquierda sumale todo lo que haya en la izquierda.
    if(this.right) total += this.right.size(); //Si hay derecha sumale todo lo que haya en la derecha.
    return total;
@@ -56,6 +54,20 @@ BinarySearchTree.prototype.contains = function(value){
       if(this.left === null) return false; //Si dentro de la rama izquierda no hay nada.
       return this.left.contains(value); //Hago RECURSION para seguir buscando.
    } 
+   /*
+   if(value === this.value) return true;
+   
+   if(value > this.value){ //Si entra aca, va a la derecha porque es mayor
+      if(this.right) ; //Si dentro de la rama derecha esta ocupada
+      return this.right.contains(value); //Hago RECURSION para comparar /if(value === this.value)/ y seguir iterando
+      return true
+   } 
+   if(value < this.value){ //Si entra aca, va a la izquierda porque es menor
+      if(this.left) ; //Si dentro de la rama izquierda esta ocupada
+      return this.left.contains(value); //Hago RECURSION para comparar /if(value === this.value)/  y seguir iterando
+      return true
+   */
+
    /*   &&  si se cumple lo primero sigo con lo segundo.
    if(this.value === value) return true --> Si el valor esta en la raiz.
    if(this.left && this.left.contain(value)) return true --> Si hay izquierda y el valor esta ahi retorna true.
@@ -64,7 +76,8 @@ BinarySearchTree.prototype.contains = function(value){
    */
 }
 
-BinarySearchTree.prototype.depthFirstForEach = function(cb, pedido){
+//RECORRIDO EN PROFUNDIDAD 
+BinarySearchTree.prototype.depthFirstForEach = function(cb, pedido){ 
    if(pedido === 'in-order' || pedido === undefined){  // RECORRE: IZQUIERDA - ROOT - DERECHA
       if(this.left && this.left.depthFirstForEach(cb, pedido)); // Si left esta ocupado hace RECURSION hasta que encuentra un null.
       cb(this.value); //Esta funcion retorna el valor de la root donde quedó
@@ -84,6 +97,7 @@ BinarySearchTree.prototype.depthFirstForEach = function(cb, pedido){
    }
 }
 
+//RECORRIDO A LO ANCHO
 BinarySearchTree.prototype.breadthFirstForEach = function(cb, array=[]){
    
   if(this.left){ //Si hay algo del lado izquierdo
@@ -97,6 +111,16 @@ BinarySearchTree.prototype.breadthFirstForEach = function(cb, array=[]){
    if(array.length > 0){   // Si tenfo elementos en mi array
       array.shift().breadthFirstForEach(cb, array) // Sacamos el primer elemento del array y hace RECURSION para eliminarlos de a uno.
    }
+
+  /* 
+  BinarySearchTree.prototype.breadthFirstForEach = function(cb, array = [])
+  
+  if(this.left) array.push(this.left);
+  if(this.right) array.push(this.right)
+  cb(this.value);
+
+  if(array.length > 0) array.shift().breadthFirstForEach(cb, array);
+  */ 
 }
 
 
