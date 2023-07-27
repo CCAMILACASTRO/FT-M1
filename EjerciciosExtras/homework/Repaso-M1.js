@@ -16,7 +16,17 @@ const {
 
 var countArray = function(array) {
     // Tu código aca:
-    
+
+    let suma = 0;
+
+    for(let i = 0; i < array.length; i++){
+        if(Array.isArray(array[i])){
+            suma += countArray(array[i])
+        } else {      
+            suma+= array[i]
+        }
+    } 
+    return suma;
 }
 
 
@@ -40,6 +50,15 @@ var countArray = function(array) {
 var countProps = function(obj) {
     // Tu código aca:
 
+    let contador = 0;
+
+    for(let prop in obj){
+        contador ++;
+        if(typeof obj[prop] === 'object' && !Array.isArray(obj[prop])){
+            contador += countProps(obj[prop])
+        }
+    }
+    return contador;
 }
 
 
@@ -54,7 +73,20 @@ var countProps = function(obj) {
 LinkedList.prototype.changeNotNumbers = function(){
     // Tu código aca:
 
+    let contador = 0;
+
+    let current = this.head;
+
+    while(current){
+        if(isNaN(current.value)){ //Comprueba si un numero se puede convertir, 
+            current.value = 'Kiricocho' //Como no se podia convertir lo cambia a Kiricocho
+            contador++; //Y cuenta el cambio hecho.
+        }
+        current = current.next //Pasamos al siguiente nodo.
+    }
+    return contador;
 }
+
 
 
 // Implementar la función mergeQueues que a partir de dos queues recibidas por parametro
@@ -68,6 +100,13 @@ LinkedList.prototype.changeNotNumbers = function(){
 var mergeQueues = function(queueOne, queueTwo) {
     // Tu código aca:
 
+    let queueOrdenada = new Queue(); //creamos una nueva lista.
+
+    while(queueOne.size() || queueTwo.size()){
+        if(queueOne.size() && queueOrdenada.enqueue(queueOne.dequeue())); //mete en la nueva lista lo que voy sacando de la uno
+        if(queueTwo.size() && queueOrdenada.enqueue(queueTwo.dequeue())); //mete en la nueva lista lo que voy sacando de la dos
+    } 
+    return queueOrdenada;
 }
 
 
@@ -81,8 +120,12 @@ var mergeQueues = function(queueOne, queueTwo) {
 // - multBySix(4) --> 24
 
 var closureMult = function(multiplier) {
-    // Tu código aca:
+    // Tu código aca:    
 
+    return function(num){
+        return num * multiplier;        l
+    }
+   
 }
 
 // Implementar el método sum dentro del prototype de BinarySearchTree
@@ -90,6 +133,12 @@ var closureMult = function(multiplier) {
 BinarySearchTree.prototype.sum = function() {
     // Tu código aca:
 
+    if(!this.value) return 0;
+    
+    let suma = this.value;
+    if(this.left) suma+= this.left.sum()
+    if(this.right) suma+= this.right.sum()
+    return suma;
 }
 
 module.exports = {
