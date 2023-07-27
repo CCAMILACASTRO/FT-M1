@@ -7,9 +7,26 @@ function quickSort(array) {
   // Devolver el array ordenado resultante
   // Tu código:
 
-  // if(array.length <= 1) return array;
-  // let calculoPivote = array.Math.floor(Math.random() * array.length) //Esto me retorna un numero(posicion) aleatorio redondeado para abajo * largo del array.
-  // let pivote = [calculoPivote];
+  /*if(array.length <= 1) return array;
+                            redondea abajo / aleatorio entre 0 y 1 * cantidad de elementos
+  let calculoPivote = array.Math.floor(Math.random() * array.length) //Esto me retorna un numero(posicion) aleatorio redondeado para abajo * largo del array.
+  let pivot = [calculoPivote];
+
+  let iguales = [] - para el o los valores que sean = al pivote 
+  let left = [] - para los menores al pivote
+  let right = [] - para los mayores al pivote.
+
+  for(let i = 0; i < array.length; i++){
+    if(array[i] !== pivote){     //Si el valor dentro de la pisicion de i es diferente al pivote ...
+      if(array[i] < pivote) left.push(array[i])  // si es true: pushear al array de left
+      right.push(array[i])   // si es false: pushear al array de right.
+    } else {  //Si el valor es igual a pivote
+      iguales.push(array[i]) // pusheo el valor a 'iguales'
+    }
+  } Salgo del for
+  return quickSort(left).concat(iguales).concat(quickSort(right));
+}  
+  */
   
   if(array.length <= 1) return array; 
   
@@ -49,7 +66,7 @@ function mergeSort(array) {
 
   /* 4to: creo un nuevo array para ir guardando los valores que comparo y pusheo. */
   array = [] //Genero un array vacio pisando el valor del array recibido por parametro, porque los valores de ese array ya los guarde en left y right.
-
+  // let newArray = []  -- Sino puedo generar un nuevo arreglo dentro de otra variante
   /*5to: RECURSION: para seguir dividiendo los array de ser necesario */
   left = mergeSort(left) // hago RECURSION  de left para que siga dividiendo el array hasta que quede menor a 2.
   right = mergeSort(right); // hago RECURSION de right para que siga dividiendo el array hasta que quede menor a 2.
